@@ -20,7 +20,7 @@ configureApp(app);
  * Get port from environment and store in Express.
  */
 
-const port = normalizePort(process.env.PORT || "3000");
+const port = normalizePort(process.env.ENTERPRISE_TODO_PORT || appConfig.port);
 app.set("port", port);
 
 /**
@@ -38,7 +38,7 @@ db.DBConnectMongoose()
       /**
        * Listen on provided port, on all network interfaces.
        */
-      server.listen(appConfig.port, function serverInitiliased() {
+      server.listen(port, function serverInitiliased() {
         logger.logInfo(
           `enterprise-todo-back-end started and listening on port ${appConfig.port}`
         );

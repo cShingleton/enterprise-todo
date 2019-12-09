@@ -1,5 +1,6 @@
 module.exports = {
-  getTasks
+  getTasks,
+  updateTaskState
 };
 
 const mongoose = require("mongoose");
@@ -21,4 +22,13 @@ function getTasks() {
     search: {}
   };
   return patterns.findAll(params);
+}
+
+function updateTaskState(state, taskId) {
+  const params = {
+    model: TasksModel,
+    search: { taskId },
+    data: { $set: { state } }
+  };
+  return patterns.findOneAndUpdate(params);
 }
