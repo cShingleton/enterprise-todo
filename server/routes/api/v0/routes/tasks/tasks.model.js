@@ -2,8 +2,23 @@ module.exports = {
   getTasks
 };
 
+const mongoose = require("mongoose");
+
+const patterns = require("../../../../../db/patterns");
+
+const { Schema } = mongoose;
+const TasksSchema = new Schema({
+  taskId: String,
+  title: String,
+  state: String
+});
+TasksSchema.index({ taskId: 1 });
+const TasksModel = mongoose.model("Tasks", TasksSchema, "Tasks");
+
 function getTasks() {
-  // STUBBED TASKS
-  const tasks = [{ id: 1, title: "Something", state: "TASK_INBOX" }];
-  return new Promise(resolve => setTimeout(() => resolve(tasks), 3000));
+  const params = {
+    model: TasksModel,
+    search: {}
+  };
+  return patterns.findAll(params);
 }
