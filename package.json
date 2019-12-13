@@ -3,14 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "vue-cli-service serve | bunyan -o short",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test:e2e": "vue-cli-service test:e2e",
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "bunyan": "^1.8.12",
+    "bunyan-express-serializer": "^1.0.0",
+    "cookie-parser": "^1.4.4",
     "core-js": "^3.4.3",
+    "cors": "^2.8.5",
+    "debug": "^4.1.1",
+    "express": "^4.17.1",
+    "express-request-id": "^1.4.1",
+    "helmet": "^3.21.2",
     "vue": "^2.6.10",
     "vue-router": "^3.1.3",
     "vuetify": "^2.1.13",
