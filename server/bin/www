@@ -7,7 +7,10 @@ const express = require("express");
 const debug = require("debug")("enterprise-todo:server");
 const http = require("http");
 
+const { app: appConfig } = require("../config.js");
 const configureApp = require("../app");
+const db = require("../db/db");
+const logger = require("../utils/logger");
 
 const app = express();
 
@@ -29,10 +32,30 @@ const server = http.createServer(app);
 /**
  * Listen on provided port, on all network interfaces.
  */
-
-server.listen(port);
-server.on("error", onError);
-server.on("listening", onListening);
+db.DBConnectMongoose()
+  .then(() => {
+    if (!module.parent) {
+      /**
+       * Listen on provided port, on all network interfaces.
+       */
+      server.listen(appConfig.port, function serverInitiliased() {
+        logger.logInfo(
+          `enterprise-todo-back-end started and listening on port ${appConfig.port}`
+        );
+        logger.logInfo(
+          `Configured environment is ${appConfig.environment.toUpperCase()}`
+        );
+      });
+      server.on("error", onError);
+      server.on("listening", onListening);
+    }
+  })
+  .catch(err => {
+    logger.logError(
+      `Error starting enterprise-todo-back-end when initialising DB: ${err}`
+    );
+    process.exit(1);
+  });
 
 /**
  * Normalize a port into a number, string, or false.
