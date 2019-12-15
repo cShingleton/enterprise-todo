@@ -10,6 +10,7 @@ import { axiosResHandler, axiosErrorHandler, instance } from "@/plugins/axios";
 
 function updateTaskState(updateData) {
   const { taskId, state } = updateData;
+  console.log("I fired!");
   return instance
     .put(`/v0/tasks/${taskId}`, { taskId, state })
     .then(res => axiosResHandler(res))

@@ -3,6 +3,8 @@ module.exports = {
   findOneAndUpdate
 };
 
+const { AppError } = require("@srv/utils/errorHandler.js");
+
 function findAll(params) {
   const { model, search, select = null, options = {} } = params;
   const expr = !params.sort
@@ -29,11 +31,10 @@ function findOneAndUpdate(params) {
     .findOneAndUpdate(search, data, options)
     .exec()
     .then(result => {
-      console.log(result);
       // if you wish to return a newly upserted doc set the options.new to true
       if (result !== null || options.upsert) return result;
       const errMsg = "No matching document was found to update";
-      const missingErr = new Error(errMsg);
+      const missingErr = new AppError("DATABASE", errMsg, true, 404);
       return Promise.reject(missingErr);
     })
     .catch(error => {
