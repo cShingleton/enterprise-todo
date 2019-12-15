@@ -1,9 +1,14 @@
 module.exports = {
-  getTasks
+  getTasks,
+  updateTaskState
 };
 
 const tasksModel = require("./tasks.model");
 
-async function getTasks() {
+function getTasks() {
   return tasksModel.getTasks();
+}
+
+function updateTaskState(state, taskId) {
+  return tasksModel.updateTaskState(state, taskId);
 }

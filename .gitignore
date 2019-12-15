@@ -2,14 +2,17 @@
 node_modules
 /dist
 
+# test files
 /tests/e2e/videos/
 /tests/e2e/screenshots/
+*.snap
 
 # local env files
 .env.local
 .env.*.local
 
 # Log files
+logs/*.log.*
 logs/*.log
 npm-debug.log*
 yarn-debug.log*

@@ -11,3 +11,8 @@ router
   .route("/")
   .get(wrapAsyncErrors(tasksControllers.getTasks))
   .all(supportedMethods(["GET"]));
+
+router
+  .route("/:taskId")
+  .put(wrapAsyncErrors(tasksControllers.updateTaskState))
+  .all(supportedMethods(["PUT"]));
