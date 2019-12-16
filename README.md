@@ -118,10 +118,10 @@ npm run test:integration-be
 <!-- LICENSE -->
 ## License
 
-Distributed under the MIT License. See `LICENSE` for more information.
+Distributed under the MIT License.
 
 <!-- CONTACT -->
 ## Contact
 
 **Charlie Shingleton** - *Initial work* - [Charlie Shingleton](https://github.com/charlieShingleton)
-Project Link: [https://github.com/charlieShingleton/enterprise-todo](https://github.com/charlieShingleton/enterprise-todo)
+  - Project Link: [https://github.com/charlieShingleton/enterprise-todo](https://github.com/charlieShingleton/enterprise-todo)
