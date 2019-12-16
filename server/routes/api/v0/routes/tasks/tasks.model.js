@@ -1,34 +1,51 @@
-module.exports = {
-  getTasks,
-  updateTaskState
-};
-
 const mongoose = require("mongoose");
 
-const patterns = require("../../../../../db/patterns");
+const patterns = require("@srv/db/patterns");
 
 const { Schema } = mongoose;
 const TasksSchema = new Schema({
-  taskId: String,
-  title: String,
-  state: String
+  state: String,
+  taskId: {
+    index: true,
+    required: true,
+    type: String,
+    unique: true
+  },
+  title: String
 });
 TasksSchema.index({ taskId: 1 });
-const TasksModel = mongoose.model("Tasks", TasksSchema, "Tasks");
+const Tasks = mongoose.model("Tasks", TasksSchema, "Tasks");
+
+function getTask(taskId) {
+  const params = {
+    model: Tasks,
+    search: { taskId },
+    select: "-_id -__v"
+  };
+  return patterns.findOne(params);
+}
 
 function getTasks() {
   const params = {
-    model: TasksModel,
-    search: {}
+    model: Tasks,
+    search: {},
+    select: "-_id -__v"
   };
   return patterns.findAll(params);
 }
 
 function updateTaskState(state, taskId) {
   const params = {
-    model: TasksModel,
+    model: Tasks,
     search: { taskId },
     data: { $set: { state } }
   };
   return patterns.findOneAndUpdate(params);
 }
+
+module.exports = {
+  getTask,
+  getTasks,
+  Tasks,
+  updateTaskState
+};

@@ -1,20 +1,17 @@
 #!/usr/bin/env node
 
+require("module-alias/register");
+
 /**
  * Module dependencies.
  */
-const express = require("express");
 const debug = require("debug")("enterprise-todo:server");
 const http = require("http");
 
 const { app: appConfig } = require("../config.js");
-const configureApp = require("../app");
+const app = require("../app");
 const db = require("../db/db");
 const logger = require("../utils/logger");
-
-const app = express();
-
-configureApp(app);
 
 /**
  * Get port from environment and store in Express.

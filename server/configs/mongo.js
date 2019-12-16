@@ -1,6 +1,8 @@
 // import private env variables from your local .env file
 require("dotenv").config();
 
+const { AppError } = require("@srv/utils/errorHandler.js");
+
 const configurations = {
   development: {
     host: process.env.ENTERPRISE_TODO_DB_HOST || "localhost",
@@ -16,6 +18,11 @@ const configurations = {
     host: process.env.ENTERPRISE_TODO_DB_HOST || "localhost",
     port: Number(process.env.ENTERPRISE_TODO_DB_PORT) || 27017,
     name: process.env.ENTERPRISE_TODO_DB_NAME || "enterprise-todo"
+  },
+  test: {
+    host: process.env.ENTERPRISE_TODO_DB_HOST || "localhost",
+    port: Number(process.env.ENTERPRISE_TODO_DB_PORT) || 27017,
+    name: process.env.ENTERPRISE_TODO_DB_NAME || "enterprise-todo-test"
   }
 };
 
@@ -31,5 +38,5 @@ module.exports.getMongoConfig = function getMongoConfig(env) {
     return Object.assign(thisRefsResolved, configurations[env]);
   }
   const errMsg = `Configuration settings were not found for '${env}'`;
-  throw new Error(errMsg);
+  throw new AppError("DEVELOPER", errMsg);
 };

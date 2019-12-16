@@ -3,6 +3,7 @@ module.exports = {
 };
 
 const api = require("./api");
+const { AppError } = require("@srv/utils/errorHandler.js");
 
 function init(router) {
   // ===== MISC =====
@@ -16,7 +17,7 @@ function init(router) {
 
   router.all("*", (req, res, next) => {
     const errMsg = `${req.ip} tried to reach ${req.originalUrl} but no matching route was found`;
-    const error = new Error(errMsg);
+    const error = new AppError("SERVER", errMsg, true, 404);
     next(error);
   });
 }

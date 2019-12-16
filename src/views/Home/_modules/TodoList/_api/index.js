@@ -5,9 +5,6 @@ export default {
 
 import { axiosResHandler, axiosErrorHandler, instance } from "@/plugins/axios";
 
-// STUBBED
-// import tasks from "./tasks.stub.json";
-
 function updateTaskState(updateData) {
   const { taskId, state } = updateData;
   return instance
