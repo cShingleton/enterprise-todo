@@ -33,6 +33,7 @@ export default {
   },
   methods: {
     logErrorToConsole(stackTrace) {
+      // eslint-disable-next-line no-console
       return console.error(stackTrace);
     }
   }

@@ -1,0 +1,6 @@
+[
+  { "taskId": "1", "title": "Something", "state": "TASK_INBOX" },
+  { "taskId": "2", "title": "Something more", "state": "TASK_INBOX" },
+  { "taskId": "3", "title": "Something else", "state": "TASK_INBOX" },
+  { "taskId": "4", "title": "Something again", "state": "TASK_INBOX" }
+]

@@ -1,5 +1,6 @@
 module.exports = {
   findAll,
+  findOne,
   findOneAndUpdate
 };
 
@@ -20,6 +21,17 @@ function findAll(params) {
 
   return expr
     .then(result => result)
+    .catch(error => {
+      throw error;
+    });
+}
+function findOne(params) {
+  const { model, search, select = null, options = {} } = params;
+  return model
+    .findOne(search, select, options)
+    .lean()
+    .exec()
+    .then(result => result || {})
     .catch(error => {
       throw error;
     });
