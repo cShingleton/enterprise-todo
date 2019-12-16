@@ -10,10 +10,12 @@ module.exports = {
     "<rootDir>/node_modules/(?!(@storybook/.*\\.vue$))"
   ],
   moduleNameMapper: {
+    "^@srv(.*)$": "<rootDir>/server$1",
     "^@/(.*)$": "<rootDir>/src/$1",
     "^.+.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$":
       "jest-transform-stub"
   },
+  runner: "groups",
   snapshotSerializers: ["jest-serializer-vue"],
   testMatch: [
     "**/tests/unit/**/*.spec.(js|jsx|ts|tsx)",

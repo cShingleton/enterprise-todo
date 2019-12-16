@@ -1,3 +1,8 @@
+/* TodoListList unit tests
+ *
+ * @group unit/front-end
+ */
+
 import { createLocalVue, mount } from "@vue/test-utils";
 
 import Vuetify from "@/plugins/vuetify";

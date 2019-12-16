@@ -18,6 +18,11 @@ const configurations = {
     host: process.env.ENTERPRISE_TODO_DB_HOST || "localhost",
     port: Number(process.env.ENTERPRISE_TODO_DB_PORT) || 27017,
     name: process.env.ENTERPRISE_TODO_DB_NAME || "enterprise-todo"
+  },
+  test: {
+    host: process.env.ENTERPRISE_TODO_DB_HOST || "localhost",
+    port: Number(process.env.ENTERPRISE_TODO_DB_PORT) || 27017,
+    name: process.env.ENTERPRISE_TODO_DB_NAME || "enterprise-todo-test"
   }
 };
 

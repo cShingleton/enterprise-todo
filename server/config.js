@@ -27,6 +27,13 @@ function initConfiguration(env) {
         port: process.env.ENTERPRISE_TODO_APP_PORT || 8081
       },
       mongo: getMongoConfig("production")
+    }),
+    test: () => ({
+      app: {
+        environment: process.env.NODE_ENV || "test",
+        port: process.env.ENTERPRISE_TODO_APP_PORT || 8081
+      },
+      mongo: getMongoConfig("test")
     })
   };
   return configurations[env]();
